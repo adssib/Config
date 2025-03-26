@@ -1,3 +1,4 @@
+
 --[[
 
 =====================================================================
@@ -91,7 +92,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -194,12 +195,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- NOTE: Some terminals have coliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -240,7 +235,9 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
+  'tpope/vim-fugitive', -- for git commands
+  'jiangmiao/auto-pairs', -- auto closing stuff like { and (
+  
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -377,6 +374,22 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+	  {
+		'nvim-tree/nvim-tree.lua',
+		config = function()
+		  require('nvim-tree').setup {
+			auto_close = true, -- Automatically close when you open a file
+			view = {
+			  width = 30, -- Set the width of the file tree
+			  side = 'left', -- Position the file tree on the left side
+			},
+			filters = {
+			  dotfiles = false, -- Show dotfiles
+			},
+		  }
+		end
+  },
+
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -755,14 +768,16 @@ require('lazy').setup({
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
+        local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
-          return nil
+          lsp_format_opt = 'never'
         else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
+          lsp_format_opt = 'fallback'
         end
+        return {
+          timeout_ms = 500,
+          lsp_format = lsp_format_opt,
+        }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
@@ -1031,3 +1046,14 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Enable relative line numbers
+vim.o.relativenumber = true
+
+-- Enable absolute line numbers
+vim.o.number = true
+-- nvim-tree setup
+-- Keybinding to toggle nvim-tree
+
+vim.api.nvim_set_keymap('n', '<S-F>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.g.nvim_tree_auto_open = 1
