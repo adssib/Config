@@ -3,7 +3,9 @@ code --install-extension dart-code.flutter
 code --install-extension esbenp.prettier-vscode
 code --install-extension fabianlauer.vs-code-xml-format
 code --install-extension grapecity.gc-excelviewer
+code --install-extension hussamadil.ayat
 code --install-extension icrawl.discord-vscode
+code --install-extension jakeboone02.cypher-query-language
 code --install-extension james-yu.latex-workshop
 code --install-extension jebbs.plantuml
 code --install-extension mechatroner.rainbow-csv
