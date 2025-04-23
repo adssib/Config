@@ -8,4 +8,5 @@
 
 [PicoCTF](https://picoctf.org/index.html#picogym)
 
-[CodeForces](https://codeforces.com/)
+
+[Coding Challenges](https://codingchallenges.fyi/)
