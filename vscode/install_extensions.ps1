@@ -2,6 +2,7 @@ code --install-extension dart-code.dart-code
 code --install-extension dart-code.flutter
 code --install-extension esbenp.prettier-vscode
 code --install-extension fabianlauer.vs-code-xml-format
+code --install-extension golang.go
 code --install-extension grapecity.gc-excelviewer
 code --install-extension hussamadil.ayat
 code --install-extension icrawl.discord-vscode
@@ -18,6 +19,7 @@ code --install-extension ms-vscode.cmake-tools
 code --install-extension ms-vscode.cpptools
 code --install-extension ms-vscode.cpptools-extension-pack
 code --install-extension ms-vscode.cpptools-themes
+code --install-extension ms-vscode.powershell
 code --install-extension redhat.java
 code --install-extension ritwickdey.liveserver
 code --install-extension svelte.svelte-vscode
@@ -36,4 +38,6 @@ code --install-extension vscjava.vscode-java-test
 code --install-extension vscjava.vscode-maven
 code --install-extension vscjava.vscode-spring-initializr
 code --install-extension vscode-icons-team.vscode-icons
+code --install-extension vscodevim.vim
+code --install-extension wwnao.bat-formatter
 code --install-extension yy0931.vscode-sqlite3-editor
